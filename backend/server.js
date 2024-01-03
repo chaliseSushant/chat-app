@@ -8,6 +8,6 @@ app.get('/',(req,res)=>{
 })
 
 //app.get()
-const PORT = process.config.PORT || 3000
+const PORT = process.config.PORT || 4000
 
 app.listen(PORT,console.log(`Server started on port ${PORT}`))
