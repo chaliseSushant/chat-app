@@ -15,6 +15,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", userRoutes);
+
+app.
 const PORT = process.config.PORT || 4000;
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
