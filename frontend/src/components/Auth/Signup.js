@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
-import { Cloudinary } from "@cloudinary/url-gen";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -38,6 +37,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+      setLoading(false);
       return;
     }
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
@@ -71,6 +71,7 @@ const Signup = () => {
     }
   };
   const submitHandler = async () => {
+    setLoading(true);
     if (!name || !email || !password || !confirmpassword) {
       toast({
         title: "Please Enter in all the fields",
@@ -79,6 +80,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+      setLoading(false);
     }
     if (password !== confirmpassword) {
       toast({
@@ -88,6 +90,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+      setLoading(false);
       try {
         const config = {
           headers: {
