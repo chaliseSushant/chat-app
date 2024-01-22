@@ -51,7 +51,8 @@ const Signup = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          setPic(data.url.toString());
+          console.log(data);
+          setPic(data.secure_url.toString());
           setLoading(false);
         })
         .catch((err) => {
@@ -91,29 +92,30 @@ const Signup = () => {
         position: "bottom",
       });
       setLoading(false);
-      try {
-        const config = {
-          headers: {
-            "Content-type": "application/json",
-          },
-        };
-        const { data } = await axios.post(
-          "/api/user",
-          { name, email, password, pic },
-          config
-        );
-        toast({
-          title: "Registration is Successful",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-          position: "bottom",
-        });
-        localStorage.setItem("userInfo", JSON.stringify(data));
-        setLoading(false);
-        navigate("/chat");
-      } catch (err) {}
+      return;
     }
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "/api/user",
+        { name, email, password, pic },
+        config
+      );
+      toast({
+        title: "Registration is Successful",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
+      navigate("/chat");
+    } catch (err) {}
   };
   return (
     <VStack spacing="5px">
